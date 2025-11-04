@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Using Google Docs</title>
+    <style>
+        /* --- Basic Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F5F5DC; /* Beige */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFF; /* White container for contrast */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #800020; /* Burgundy */
+            color: #F5F5DC; /* Beige */
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        h2 {
+            color: #800020; /* Burgundy */
+            border-bottom: 2px solid #EEE;
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+
+        h3 {
+            color: #800020; /* Burgundy */
+            margin-top: 1.2em;
+        }
+        
+        p, ol, ul, blockquote {
+            margin-bottom: 1em;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: #800020; /* Burgundy */
+        }
+        
+        blockquote {
+            border-left: 4px solid #800020; /* Burgundy */
+            padding-left: 15px;
+            margin-left: 0;
+            font-style: italic;
+            background-color: #F5F5DC; /* Beige */
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* --- Collapsible Button Styles --- */
+        .collapsible {
+            background-color: #800020; /* Burgundy */
+            color: #FFFFFF; /* White text for contrast */
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-bottom: 1px solid #F5F5DC; /* Beige separator */
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover, .collapsible.active {
+            background-color: #A00028; /* Slightly lighter burgundy on hover/active */
+        }
+
+        /* Style the +/– indicator */
+        .collapsible:after {
+            content: '\002B'; /* Plus sign */
+            color: #FFFFFF;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .collapsible.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        /* --- Collapsible Content Styles --- */
+        .content {
+            padding: 0 25px; /* Add 0 padding top/bottom, 25px left/right */
+            max-height: 0;
+            overflow: hidden;
+            background-color: #FFFFFF; /* White background for content */
+            transition: max-height 0.3s ease-out;
+        }
+        
+        /* This wrapper div ensures padding is respected during animation */
+        .content-wrapper {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        /* --- Footer Style (Centered and Bold) --- */
+        footer {
+            text-align: center; /* This centers the text */
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #6B4A4A; /* Muted burgundy/brown */
+            font-style: italic;
+            font-weight: bold; /* This makes the text bold */
+        }
+
+        /* --- Print Button Style (Modified for new location) --- */
+        #printButton {
+            background-color: #F5F5DC; /* Beige */
+            color: #800020; /* Burgundy */
+            border: 2px solid #800020;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            /* New styles for centering */
+            display: block;
+            margin: 25px auto 10px auto;
+            width: 220px; /* Give it a defined width */
+            transition: all 0.2s ease;
+        }
+
+        #printButton:hover {
+            background-color: #800020;
+            color: #F5F5DC;
+        }
+        
+        /* --- Link Button Style --- */
+        .linkButton {
+            background-color: #F5F5DC; /* Beige */
+            color: #800020; /* Burgundy */
+            border: 2px solid #800020;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto 25px auto; /* Top, Horizontal, Bottom */
+            width: 220px; /* Same width as printButton */
+            transition: all 0.2s ease;
+            text-decoration: none; /* Remove underline from link */
+            text-align: center; /* Center text */
+        }
+
+        .linkButton:hover {
+            background-color: #800020;
+            color: #F5F5DC;
+            text-decoration: none;
+        }
+
+        /* --- Print-Specific Styles --- */
+        @media print {
+            body {
+                background-color: #FFF !important;
+                color: #000 !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0;
+            }
+
+            header {
+                background-color: #FFF !important;
+                color: #000 !important;
+                text-align: left;
+                border-bottom: 2px solid #000;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            /* Hide the print button, link button, collapsible buttons, and footer */
+            #printButton, .linkButton, .collapsible, footer {
+                display: none !important;
+            }
+
+            /* Expand all collapsible content */
+            .content {
+                max-height: none !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .content-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            /* Reset colors for headings and links */
+            h2, h3, strong, a {
+                color: #000 !important;
+            }
+            
+            blockquote {
+                background-color: #F4F4F4 !important;
+                border-left: 4px solid #CCC !important;
+                color: #333 !important;
+            }
+
+            /* Ensure links are printable */
+            a, a:visited {
+                text-decoration: underline;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Comprehensive Guide to Using Google Docs</h1>
+        </header>
+
+        <button class="collapsible">Accessing Google Docs (The Free Plan)</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Google Docs is a powerful, free web-based word processor. It's not a program you download, but one you access through your web browser.</p>
+                <ol>
+                    <li><strong>Get a Google Account:</strong> Google Docs is 100% free with a personal Google account. If you have a Gmail address, you already have an account. If not, you can create one for free.</li>
+                    <li><strong>Go to Google Docs:</strong> You can access it in several ways:
+                        <ul>
+                            <li>Type <a href="https://docs.google.com" target="_blank">docs.google.com</a> into your browser.</li>
+                            <li>Go to <a href="https://drive.google.com" target="_blank">drive.google.com</a> (your Google Drive) and click "New" > "Google Docs".</li>
+                            <li>Open Gmail and click the "waffle" icon (9 dots) in the top-right corner, then select "Docs".</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Understanding the Free Plan</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Unlike other tools, the free personal plan for Google Docs is incredibly generous and contains almost all its core features. The limitations are not about features, but about storage and support.</p>
+                <ul>
+                    <li><strong>Storage Limit:</strong> You get <strong>15 GB of free storage</strong>, but this is shared across your entire Google Account (including Google Drive, Gmail, and Google Photos). Google Docs themselves take up very little space.</li>
+                    <li><strong>No Advanced Business Features:</strong> Features relevant to large corporations (like advanced security audits or dedicated business support) are not included. For a teacher, this is not a limitation.</li>
+                    <li><strong>Offline Access:</strong> This is a feature, not a limitation, but one to be aware of. By default, you must be online. You can enable offline access in your Google Drive settings to work on docs without an internet connection (your changes will sync when you're next online).</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Making Your First Google Doc</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <ol>
+                    <li><strong>Start Creating:</strong> From the Google Docs homepage, click the large <strong>"Blank"</strong> document button (a rainbow +) to start a new doc. You can also choose a template (like "Resume" or "Brochure").</li>
+                    <li><strong>Name Your Document:</strong> At the top-left, click on <strong>"Untitled document"</strong>. Type a new name and press Enter. Your document is now named and is automatically saved to your Google Drive.</li>
+                    <li><strong>Start Typing:</strong> You can type just as you would in Microsoft Word. All your changes are saved automatically, every few seconds. You will never need to click a "Save" button.</li>
+                    <li><strong>Use the Toolbar:</strong> The toolbar at the top has all the familiar formatting tools:
+                        <ul>
+                            <li>Font, size, and color</li>
+                            <li>Bold, Italic, Underline</li>
+                            <li>Alignment (left, center, right)</li>
+                            <li>Bulleted and numbered lists</li>
+                            <li>Insert images, links, tables, and special characters.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Key Feature: Collaboration & Sharing</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>This is the most powerful feature of Google Docs for education. You can work on the same document with students in real-time.</p>
+                
+                <h3>Sharing Your Doc</h3>
+                <ol>
+                    <li>Click the blue <strong>"Share"</strong> button in the top-right corner.</li>
+                    <li><strong>Add People:</strong> You can type in the email addresses of your students or colleagues.</li>
+                    <li><strong>Set Permissions (Very Important):</strong> To the right of their name, choose what they can do:
+                        <ul>
+                            <li><strong>Viewer:</strong> Can only read the document. They cannot change it or comment.</li>
+                            <li><strong>Commenter:</strong> Can read and leave comments, but cannot change the text. (Perfect for peer review).</li>
+                            <li><strong>Editor:</strong> Can read, comment, and make any changes they want. (Perfect for group collaboration).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Get a Link:</strong> Alternatively, you can share a link. Under "General access," you can change it from "Restricted" to <strong>"Anyone with the link"</strong> and set their permission (Viewer, Commenter, or Editor).</li>
+                </ol>
+                
+                <h3>Using Collaboration Modes</h3>
+                <p>In the top-right corner (under the "Share" button), you can change your "mode."</p>
+                <ul>
+                    <li><strong>Editing Mode (Default):</strong> Your changes directly edit the text.</li>
+                    <li><strong>Suggesting Mode:</strong> Your changes appear as colored "suggestions." The document owner can then "Accept" or "Reject" each change. <strong>This is the #1 tool for giving teacher feedback and for student peer review.</strong></li>
+                    <li><strong>Viewing Mode:</strong> Shows you what the final doc looks like with no suggestions visible.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Uses for EFL Teaching</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Google Docs is arguably the most flexible free tool for an EFL teacher. Here are ways to use it for every skill.</p>
+
+                <h2>Writing Activities</h2>
+                <ul>
+                    <li><strong>Collaborative Writing:</strong> (Chain Stories) Start a story and share the doc with "Editor" access. Each student adds a paragraph.</li>
+                    <li><strong>Digital Writing Portfolios:</strong> A student shares a single doc (or folder) with you. They add all their essays and writing assignments to it, allowing you to see their progress over the semester.</li>
+                    <li><strong>Teacher Feedback:</strong> Have students share their essays with you as "Commenter" or "Editor". Use <strong>Suggesting Mode</strong> to show corrections and the <strong>Comment feature</strong> to explain *why* it's a mistake (you can even add links to grammar websites in your comments).</li>
+                    <li><strong>Live Peer Review:</strong> Pair students and have them share their docs with each other as <strong>"Commenter"</strong> or <strong>"Suggesting"</strong>. They can give feedback without deleting the original text.</li>
+                    <li><strong>Template-Based Writing:</strong> Create a doc with the template for a formal letter, a CV, or a book review. Share the link as "Viewer" and instruct students to go to <strong>"File" > "Make a copy"</strong> to get their own editable version.</li>
+                    <li><strong>Error Correction Logs:</strong> Each student keeps a personal doc to log their common errors, the correction, and the rule.</li>
+                </ul>
+
+                <h2>Reading & Vocabulary</h2>
+                <ul>
+                    <li><strong>Shared Reading & Annotation:</strong> Paste a short story or article into a doc. Share it with the class as "Commenter". Students can highlight words they don't know and add a comment asking for the definition, or you can have them define new words in the comments.</li>
+                    <li><strong>Jigsaw Reading:</strong> Paste a long text into a doc. Create a table at the top assigning "Student 1: Paragraph 1," etc. Each student becomes an "expert" on their section and writes a summary in the doc for others to read.</li>
+                    <li><strong>Collaborative Glossary:</strong> Create a doc for a new unit (e.g., "The Environment"). Students add new vocabulary, definitions, example sentences, and images to create a shared class dictionary.</li>
+                </ul>
+
+                <h2>Speaking & Listening Practice</h2>
+                <ul>
+                    <li><strong>Script Writing:</strong> Students work in groups (as "Editors") to write a collaborative dialogue, play, or video script.</li>
+                    <li><strong>Podcast/Vlog Planning:</strong> Students can outline, brainstorm, and script their spoken projects in a shared doc.</li>
+                    <li><strong>Pronunciation Practice (Voice Typing):</strong> Have students go to <strong>"Tools" > "Voice typing"</strong>. They can practice their pronunciation and clarity by speaking to the document.</li>
+                </ul>
+                
+                <h2>Project-Based Learning & Worksheets</h2>
+                <ul>
+                    <li><strong>Group Project Hub:</strong> This is the perfect central "home" for a group project. Students can add their brainstorming, task lists (use the <strong>Checklist</strong> feature), research links, and the final draft, all in one place.</li>
+                    <li><strong>Digital Worksheets:</strong> Create a worksheet using tables, fill-in-the-blank lines (`____`), and questions. In Google Classroom, you can "Make a copy for each student."</li>
+                    <li><strong>KWL Charts:</strong> Use <strong>"Insert" > "Table"</strong> to create a simple 3-column chart (What I <strong>K</strong>now, What I <strong>W</strong>ant to know, What I <strong>L</strong>earned) for students to fill in collaboratively.</li>
+                </ul>
+                
+                <h2>Classroom Management</h2>
+                <ul>
+                    <li><strong>Shared Class Notes:</strong> Designate one student (or a few) as the "note-taker" for the day. They type notes into a shared doc that all students (especially absent ones) can access as "Viewers".</li>
+                    <li><strong>Q&A "Parking Lot":</strong> Have a running doc where students can add questions during a lesson that you can answer at the end.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <button id="printButton">🖨️ Print / Save as PDF</button>
+        
+        <a href="Creating_and_Sharing_a_Google_Doc_2025.html" class="linkButton">Step by Step presentation</a>
+
+    </div> <script>
+        // --- SCRIPT FOR PRINT BUTTON ---
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        // --- SCRIPT FOR COLLAPSIBLES ---
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        ✨✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️✨
+    </footer>
+
+</body>
+</html>

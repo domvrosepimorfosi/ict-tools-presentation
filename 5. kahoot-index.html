@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Using Kahoot!</title>
+    <style>
+        /* --- Basic Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #FFF0E6; /* Light Peach/Orange */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFF; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #FF6600; /* Orange */
+            color: #FFFFFF; /* White */
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        h2 {
+            color: #FF6600; /* Orange */
+            border-bottom: 2px solid #EEE;
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+
+        h3 {
+            color: #FF6600; /* Orange */
+            margin-top: 1.2em;
+        }
+        
+        p, ol, ul, blockquote {
+            margin-bottom: 1em;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: #FF6600; /* Orange */
+        }
+        
+        blockquote {
+            border-left: 4px solid #FF6600; /* Orange */
+            padding-left: 15px;
+            margin-left: 0;
+            font-style: italic;
+            background-color: #FFF0E6; /* Light Peach/Orange */
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* --- Collapsible Button Styles --- */
+        .collapsible {
+            background-color: #FF6600; /* Orange */
+            color: #FFFFFF; /* White text */
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-bottom: 1px solid #FFF0E6; /* Light Peach/Orange separator */
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover, .collapsible.active {
+            background-color: #FF8533; /* Lighter Orange on hover/active */
+        }
+
+        /* Style the +/– indicator */
+        .collapsible:after {
+            content: '\002B'; /* Plus sign */
+            color: #FFFFFF;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .collapsible.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        /* --- Collapsible Content Styles --- */
+        .content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #FFFFFF; /* White background */
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .content-wrapper {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        /* --- Footer Style --- */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #CC5200; /* Dark Muted Orange */
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* --- Print Button Style --- */
+        #printButton {
+            background-color: #FFF0E6; /* Light Peach/Orange */
+            color: #FF6600; /* Orange */
+            border: 2px solid #FF6600;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 25px auto 10px auto;
+            width: 220px;
+            transition: all 0.2s ease;
+        }
+
+        #printButton:hover {
+            background-color: #FF6600;
+            color: #FFF0E6;
+        }
+
+        /* --- Print-Specific Styles --- */
+        @media print {
+            body {
+                background-color: #FFF !important;
+                color: #000 !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0;
+            }
+
+            header {
+                background-color: #FFF !important;
+                color: #000 !important;
+                text-align: left;
+                border-bottom: 2px solid #000;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            /* Hide the print button, collapsible buttons, and footer */
+            #printButton, .collapsible, footer {
+                display: none !important;
+            }
+
+            /* Expand all collapsible content */
+            .content {
+                max-height: none !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .content-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            /* Reset colors for headings and links */
+            h2, h3, strong, a {
+                color: #000 !important;
+            }
+            
+            blockquote {
+                background-color: #F4F4F4 !important;
+                border-left: 4px solid #CCC !important;
+                color: #333 !important;
+            }
+
+            /* Ensure links are printable */
+            a, a:visited {
+                text-decoration: underline;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Comprehensive Guide to Creating a Kahoot!</h1>
+        </header>
+
+        <button class="collapsible">What is Kahoot!? (The Free Plan)</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Kahoot! is a <strong>free</strong> game-based learning platform. It's used to create and play fun, engaging quizzes (called "Kahoots") in a live classroom setting.</p>
+                <p>The key feature is that it's <strong>teacher-paced</strong> and <strong>social</strong>. The teacher controls the game from their computer (which is usually projected onto a screen). Students join in using their phones or laptops as "buzzers." Everyone sees the question on the main screen and races to select the correct answer shape on their personal device.</p>
+                
+                <h3>Key Advantages for EFL</h3>
+                <ul>
+                    <li><strong>High Engagement:</strong> It's a game, not a test. The music, timer, and live scoreboard create a fun, competitive atmosphere that students love.</li>
+                    <li><strong>Great for Warm-ups & Reviews:</strong> Perfect for a 5-10 minute activity to review vocabulary or grammar from the previous lesson.</li>
+                    <li><strong>Focuses on Speed & Accuracy:</strong> Students get more points for answering *correctly* and *quickly*. This is great for building fluency and quick recall of vocabulary.</li>
+                    <li><strong>Formative Assessment:</strong> Provides instant data for the teacher. You can see a bar chart of how many students chose each answer, allowing you to immediately see if the class has misunderstood a concept.</li>
+                    <li><strong>Team Mode:</strong> You can have students play in teams, which encourages discussion and peer teaching as they decide on an answer together.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Accessing & Creating Your First Kahoot</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>The free "Basic" plan is very powerful and allows you to create and host games for up to 40 players. The main limitations are on advanced question types (like "slider" or "puzzle") and advanced reporting.</p>
+                <ol>
+                    <li><strong>Sign Up:</strong> Go to <a href="https://kahoot.com" target="_blank">kahoot.com</a> (the "creator" site) and sign up for a free "Basic" account. Select "Teacher."</li>
+                    <li><strong>Create Your Kahoot:</strong> Once on your dashboard, click the <strong>"Create"</strong> button (usually top right) and select "Kahoot."</li>
+                    <li><strong>Choose a Template:</strong> You can start with a "Blank canvas" or use a pre-made template. For your first one, just click "Create" on the blank option.</li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Building Your Quiz: Question Types</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>You are now in the Kahoot! editor. On the left, you see your "slides" (questions). In the middle, you edit the current question.</p>
+                
+                <h3>1. Quiz (Multiple Choice)</h3>
+                <ul>
+                    <li>This is the classic question type.</li>
+                    <li><strong>Question:</strong> Type your question at the top (e.g., "Which animal says 'moo'?").</li>
+                    <li><strong>Media:</strong> You can (and should!) add an image or a YouTube video. You can upload your own or search the free Getty Images library.</li>
+                    <li><strong>Answers:</strong> Add at least two (and up to four) answer options (e.g., "Cat," "Dog," "Cow," "Bird").</li>
+                    <li><strong>Correct Answer:</strong> Click the small, empty circle next to the correct answer to mark it.</li>
+                    <li><strong>Time Limit:</strong> Set how long students have (e.g., 20 seconds). For EFL, it's good to give a little extra time (e.g., 30 seconds).</li>
+                </ul>
+                
+                <h3>2. True / False</h3>
+                <ul>
+                    <li>A simple version of the "Quiz" question, with only two options: True or False.</li>
+                    <li>Example: "A 'library' is a place where you buy books." (Answer: False).</li>
+                </ul>
+
+                <h3>Adding More Questions</h3>
+                <p>On the left-side panel, click <strong>"Add question"</strong> to add another slide. You can mix and match "Quiz" and "True/False" questions in your game.</p>
+                
+                <blockquote>
+                    <strong>Pro Tip: Use the "Question Bank"!</strong><br>
+                    Don't want to make all your own questions? On the "Add question" menu, click "Question Bank." You can search for keywords (e.g., "Present Simple"). You can then see questions from *other* public Kahoots and click "Add" to instantly add them to your game. This is a massive timesaver!
+                </blockquote>
+            </div>
+        </div>
+        
+        <button class="collapsible">Saving & Launching Your Kahoot</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <h3>1. Save the Kahoot</h3>
+                <ol>
+                    <li>Once you have all your questions, click the <strong>"Save"</strong> button (top right).</li>
+                    <li>Give your Kahoot a <strong>Title</strong> (e.g., "Unit 5 Vocabulary") and a brief <strong>Description</strong>.</li>
+                    <li>Click <strong>"Continue."</strong> Your Kahoot is now saved in your "My Kahoots" library.</li>
+                </ol>
+                
+                <h3>2. Launch a Live Game (In Class)</h3>
+                <p>This is the primary way to play. You control the game, and students join with their phones.</p>
+                <ol>
+                    <li>From your library, find your quiz and click <strong>"Start"</strong>.</li>
+                    <li>Select <strong>"Classic Mode"</strong> (every student for themselves).</li>
+                    <li><strong>Game Options:</strong> You will see some options. It's a good idea to <strong>turn ON</strong> the "Friendly Nickname Generator." This prevents students from using silly or inappropriate names.</li>
+                    <li>The game will now load.</li>
+                </ol>
+                
+                <h3>3. The Student Experience (Live Game)</h3>
+                <ol>
+                    <li>You (the teacher) will now see a screen projected. It will show a <strong>Game PIN</strong> (e.g., 123 456).</li>
+                    <li>Tell your students to go to <strong>kahoot.it</strong> on their phones (this is the "player" site, *not* kahoot.com).</li>
+                    <li>They will be asked for the Game PIN. They type it in.</li>
+                    <li>They will be asked for a nickname (or the "Friendly Nickname Generator" will give them one).</li>
+                    <li>On your main screen, you will see their names appear as they join the "lobby."</li>
+                    <li>Once everyone is in, you click <strong>"Start"</strong>.</li>
+                    <li>The first question appears on the *main screen*. Students read the question there, then look at their *own device* to see the four colored shapes. They tap the shape that matches the answer they want to choose.</li>
+                    <li>After the timer runs out, the main screen shows the correct answer and a live scoreboard. You (the teacher) must click <strong>"Next"</strong> to continue to the next question.</li>
+                </ol>
+
+                <h3>4. Assign as a "Challenge" (Asynchronous)</h3>
+                <p>This is the "homework" mode. Students play at their own pace on their own time.</p>
+                <ol>
+                    <li>From your quiz page, select <strong>"Assign"</strong>.</li>
+                    <li>Set a <strong>deadline</strong> (e.g., "Due by Friday at 5:00 PM").</li>
+                    <li>Click <strong>"Create."</strong></li>
+                    <li>Kahoot! will now give you a <strong>single link</strong> and a <strong>Game PIN</strong>.</li>
+                    <li>You just share this link with your students. When they click it, they play the game on their own, seeing the questions and answers on their device. You get a full report when the deadline passes.</li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Uses for EFL Teaching</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <h2>1. Vocabulary Warm-Up</h2>
+                <p>Create a 5-question Kahoot to start the class. Use the "Image" feature. Show a picture of a vocabulary word from the previous lesson and have students choose the correct term. It's a fast, energetic way to get them settled and reviewing.</p>
+                
+                <h2>2. Grammar Check-Up</h2>
+                <p>Use "Quiz" or "True/False" for quick grammar checks. Example: "She ____ (go) to the store yesterday." Answers: "go," "goes," "went," "going." Or a True/False question: "He don't like grammar. (This sentence is correct)."</p>
+
+                <h2>3. Listening Comprehension (YouTube)</h2>
+                <p>You can add a short YouTube clip (e.g., a movie trailer, a news report, or a song) to a question. Set the timer for 1 or 2 minutes. After the clip plays, the question appears: "What was the man's job?" or "Where does this video take place?"</p>
+
+                <h2>4. Pre-Reading / Topic Introduction</h2>
+                <p>Before reading an article about, for example, "climate change," play a quick "True/False" Kahoot! with general knowledge questions about the topic ("True or False: The Amazon is the world's largest rainforest."). This activates their prior knowledge (schema) and gets them interested in the topic.</p>
+                
+                <h2>5. Formative Assessment ("Blind" Kahoot!)</h2>
+                <p>Use a Kahoot! to *introduce* a new topic. Present a grammar rule or vocabulary set they have *never seen before*. Let them guess. The results will be poor, but it shows them *why* they need to pay attention to the lesson you are about to teach. You can then play the *same* Kahoot! at the end of the lesson to show them how much they've learned.</p>
+            </div>
+        </div>
+        
+        <button id="printButton">🖨️ Print / Save as PDF</button>
+
+    </div> <script>
+        // --- SCRIPT FOR PRINT BUTTON ---
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        // --- SCRIPT FOR COLLAPSIBLES ---
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        ✨✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️✨
+    </footer>
+
+</body>
+</html>

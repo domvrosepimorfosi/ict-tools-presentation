@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Using Google Forms</title>
+    <style>
+        /* --- Basic Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #E6E6FA; /* Lavender */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFF; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #483D8B; /* Dark Slate Blue */
+            color: #FFFFFF; /* White */
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        h2 {
+            color: #483D8B; /* Dark Slate Blue */
+            border-bottom: 2px solid #EEE;
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+
+        h3 {
+            color: #483D8B; /* Dark Slate Blue */
+            margin-top: 1.2em;
+        }
+        
+        p, ol, ul, blockquote {
+            margin-bottom: 1em;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: #483D8B; /* Dark Slate Blue */
+        }
+        
+        blockquote {
+            border-left: 4px solid #483D8B; /* Dark Slate Blue */
+            padding-left: 15px;
+            margin-left: 0;
+            font-style: italic;
+            background-color: #E6E6FA; /* Lavender */
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* --- Collapsible Button Styles --- */
+        .collapsible {
+            background-color: #483D8B; /* Dark Slate Blue */
+            color: #FFFFFF; /* White text */
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-bottom: 1px solid #E6E6FA; /* Lavender separator */
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover, .collapsible.active {
+            background-color: #6A5ACD; /* Lighter Slate Blue on hover/active */
+        }
+
+        /* Style the +/– indicator */
+        .collapsible:after {
+            content: '\002B'; /* Plus sign */
+            color: #FFFFFF;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .collapsible.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        /* --- Collapsible Content Styles --- */
+        .content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #FFFFFF; /* White background */
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .content-wrapper {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        /* --- Footer Style --- */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* --- Print Button Style --- */
+        #printButton {
+            background-color: #E6E6FA; /* Lavender */
+            color: #483D8B; /* Dark Slate Blue */
+            border: 2px solid #483D8B;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 25px auto 10px auto;
+            width: 220px;
+            transition: all 0.2s ease;
+        }
+
+        #printButton:hover {
+            background-color: #483D8B;
+            color: #E6E6FA;
+        }
+        
+        /* --- Link Button Style --- */
+        .linkButton {
+            background-color: #E6E6FA; /* Lavender */
+            color: #483D8B; /* Dark Slate Blue */
+            border: 2px solid #483D8B;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto 25px auto; /* Top, Horizontal, Bottom */
+            width: 220px; /* Same width as printButton */
+            transition: all 0.2s ease;
+            text-decoration: none; /* Remove underline from link */
+            text-align: center; /* Center text */
+        }
+
+        .linkButton:hover {
+            background-color: #483D8B;
+            color: #E6E6FA;
+            text-decoration: none;
+        }
+
+        /* --- Print-Specific Styles --- */
+        @media print {
+            body {
+                background-color: #FFF !important;
+                color: #000 !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0;
+            }
+
+            header {
+                background-color: #FFF !important;
+                color: #000 !important;
+                text-align: left;
+                border-bottom: 2px solid #000;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            /* Hide the print button, link button, collapsible buttons, and footer */
+            #printButton, .linkButton, .collapsible, footer {
+                display: none !important;
+            }
+
+            /* Expand all collapsible content */
+            .content {
+                max-height: none !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .content-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            /* Reset colors for headings and links */
+            h2, h3, strong, a {
+                color: #000 !important;
+            }
+            
+            blockquote {
+                background-color: #F4F4F4 !important;
+                border-left: 4px solid #CCC !important;
+                color: #333 !important;
+            }
+
+            /* Ensure links are printable */
+            a, a:visited {
+                text-decoration: underline;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Comprehensive Guide to Using Google Forms</h1>
+        </header>
+
+        <button class="collapsible">What is Google Forms?</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Google Forms is a <strong>100% free</strong> tool from Google that lets you create surveys, quizzes, and registration sheets. It's part of the same family as Google Docs and Google Sheets.</p>
+                <p>For teachers, its most powerful use is creating <strong>self-grading quizzes</strong>. You create the questions, set the answers, and the form does the marking for you, saving you hours of work.</p>
+                
+                <h3>Key Advantages for EFL</h3>
+                <ul>
+                    <li><strong>Self-Grading:</strong> Saves enormous amounts of time on marking multiple-choice, short-answer, and fill-in-the-blank questions.</li>
+                    <li><strong>Instant Feedback:</strong> Students can see their score and which questions they got wrong *immediately* after they submit.</li>
+                    <li><strong>Excellent Data:</strong> You get a summary of the whole class (e.g., "70% of students missed question #5") and can review each student's individual answers.</li>
+                    <li><strong>Versatile:</strong> It's not just for quizzes. You can use it for class surveys, needs analysis, or as a way for students to submit written work.</li>
+                    <li><strong>Accessible:</strong> It works on any device (phone, tablet, computer) and is part of their free Google account.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Accessing & Creating Your First Form</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <ol>
+                    <li><strong>Get a Google Account:</strong> Like Docs, Forms is free with a personal Google account (like Gmail).</li>
+                    <li><strong>Go to Google Forms:</strong>
+                        <ul>
+                            <li>Type <a href="https://forms.google.com" target="_blank">forms.google.com</a> into your browser.</li>
+                            <li>Go to <a href="https://drive.google.com" target="_blank">drive.google.com</a> (your Google Drive) and click "New" > "Google Forms".</li>
+                            <li>Open Gmail and click the "waffle" icon (9 dots) in the top-right corner, then select "Forms".</li>
+                        </ul>
+                    </li>
+                    <li><strong>Start Creating:</strong> Click the large <strong>"Blank"</strong> form button (a rainbow +).</li>
+                    <li><strong>Name Your Form:</strong> At the top-left, click on <strong>"Untitled form"</strong> and give it a name (e.g., "Unit 3 Grammar Quiz").</li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Building Your Quiz: Question Types</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>You build your quiz by adding "questions" (which Google calls "items"). Click the <strong>(+)</strong> button on the floating side-menu to add a new question.</p>
+                <p>When you add a question, you choose its type from a dropdown menu. For EFL, the most useful types are:</p>
+                
+                <ul>
+                    <li><strong>Multiple Choice:</strong> The classic. You write the question and several options. You can click one as the correct answer.</li>
+                    <li><strong>Checkboxes:</strong> Similar to multiple choice, but students can select <em>more than one</em> correct answer. (e.g., "Which of these words are verbs?").</li>
+                    <li><strong>Short Answer:</strong> Students type a 1- or 2-word answer. This is <strong>perfect for fill-in-the-blank</strong>. (e.g., "He is ___ to the store. (go)"). You can set "went" as the correct answer.</li>
+                    <li><strong>Paragraph:</strong> Students type a long-form answer. This is <strong>not self-grading</strong>, but it's a great way to have students submit a short piece of writing (e.g., "Write 50 words about your weekend.").</li>
+                    <li><strong>Dropdown:</strong> Functionally the same as "Multiple Choice," but it saves space. Good for long lists (e.g., "Choose the correct preposition").</li>
+                </ul>
+                
+                <h3>Adding Other Elements (from the floating menu)</h3>
+                <ul>
+                    <li><strong>Add Image (Picture Icon):</strong> You can add an image *as* the question. This is fantastic for vocabulary quizzes (e.g., Show a picture of an 'apple' and ask "What is this?").</li>
+                    <li><strong>Add Video (Play Button Icon):</strong> You can embed a YouTube video directly into the form. You can then add questions *about* the video, creating a perfect listening comprehension test.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <button class="collapsible">Turning Your Form into a Self-Grading Quiz</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>This is the most important step! By default, a form is just a survey. You must turn it into a quiz.</p>
+                <ol>
+                    <li>At the top of your form, click the <strong>"Settings"</strong> tab.</li>
+                    <li>Find the option <strong>"Make this a quiz"</strong> and turn it <strong>ON</strong>.</li>
+                    <li><strong>Review the Quiz Settings:</strong>
+                        <ul>
+                            <li><strong>Release marks:</strong> Choose "Immediately after each submission" (so students get instant feedback) or "Later, after manual review" (if you have paragraph questions).</li>
+                            <li><strong>Respondent settings:</strong> It's a good idea to <strong>UNTICK</strong> "Missed questions" and "Correct answers" if you don't want students to share the answers with others. You can leave "Point values" ticked.</li>
+                        </ul>
+                    </li>
+                    <li>Go back to the <strong>"Questions"</strong> tab.</li>
+                </ol>
+                
+                <h3>Setting the Answer Key</h3>
+                <p>Now that it's a quiz, when you click on a question, you will see a new link at the bottom called <strong>"Answer key"</strong>.</p>
+                <ol>
+                    <li>Click <strong>"Answer key"</strong> for that question.</li>
+                    <li>Select the correct answer (or answers) by clicking on it.</li>
+                    <li>Assign a <strong>point value</strong> (e.g., "1" point).</li>
+                    <li><strong>(Optional but great!)</strong> Click <strong>"Add answer feedback"</strong>. Here, you can type feedback for *incorrect* answers (e.g., "Remember, we use 'an' before a vowel!") or *correct* answers ("Great job!").</li>
+                    <li>Click <strong>"Done"</strong> and move to the next question.</li>
+                </ol>
+                
+                <blockquote>
+                    <strong>Important Tip:</strong> At the top of every question, there is a toggle switch for <strong>"Required."</strong> It's a good idea to turn this <strong>ON</strong> for every question so that students cannot accidentally skip one.
+                </blockquote>
+            </div>
+        </div>
+
+        <button class="collapsible">Sharing Your Quiz & Getting Results</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <h3>1. Sharing with Students</h3>
+                <ol>
+                    <li>When your quiz is finished, click the big purple <strong>"Send"</strong> button (top right).</li>
+                    <li>Ignore the "Email" tab. Click the <strong>Link icon (🔗)</strong> in the middle.</li>
+                    <li>This will show you a long link. Click the box <strong>"Shorten URL"</strong> to get a much nicer, shorter link.</li>
+                    <li>Click <strong>"Copy."</strong></li>
+                    <li>You can now paste this link into an email, Google Classroom, Teams, or write it on the board for students to type in.</li>
+                </ol>
+                
+                <h3>2. Viewing the Results</h3>
+                <p>As students submit their answers, the results appear in real-time on your form.</p>
+                <ol>
+                    <li>Open your quiz (in editing mode).</li>
+                    <li>At the top, click the <strong>"Responses"</strong> tab.</li>
+                    <li>You will see three sub-tabs:
+                        <ul>
+                            <li><strong>Summary:</strong> This is amazing. It shows you charts and graphs for the whole class. You can instantly see the average score, the most frequently missed questions, etc.</li>
+                            <li><strong>Question:</strong> This lets you review one question at a time and see all the answers given for it.</li>
+                            <li><strong>Individual:</strong> This lets you look at one student's completed quiz. This is where you would go to manually grade their "Paragraph" answers.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Export to Sheets:</strong> Click the green <strong>Google Sheets icon (a cross)</strong>. This will create a perfect spreadsheet of all your students, their answers, and their scores, which you can save as your official mark book.</li>
+                </ol>
+            </div>
+        </div>
+        
+        <button id="printButton">🖨️ Print / Save as PDF</button>
+        
+        <a href="Δημιουργία_Σύντομης_Γραπτής_Δοκιμασίας_με_τη_χρήση_των_Google_Forms.html" class="linkButton">Step by Step presentation</a>
+
+    </div> <script>
+        // --- SCRIPT FOR PRINT BUTTON ---
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        // --- SCRIPT FOR COLLAPSIBLES ---
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        ✨✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️✨
+    </footer>
+
+</body>
+</html>

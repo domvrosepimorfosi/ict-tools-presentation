@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Using Quizizz</title>
+    <style>
+        /* --- Basic Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F0F4F8; /* Light Blue-Gray */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFF; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #4A154B; /* Quizizz Purple */
+            color: #FFFFFF; /* White */
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        h2 {
+            color: #4A154B; /* Quizizz Purple */
+            border-bottom: 2px solid #EEE;
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+
+        h3 {
+            color: #4A154B; /* Quizizz Purple */
+            margin-top: 1.2em;
+        }
+        
+        p, ol, ul, blockquote {
+            margin-bottom: 1em;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: #4A154B; /* Quizizz Purple */
+        }
+        
+        blockquote {
+            border-left: 4px solid #4A154B; /* Quizizz Purple */
+            padding-left: 15px;
+            margin-left: 0;
+            font-style: italic;
+            background-color: #F0F4F8; /* Light Blue-Gray */
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* --- Collapsible Button Styles --- */
+        .collapsible {
+            background-color: #4A154B; /* Quizizz Purple */
+            color: #FFFFFF; /* White text */
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-bottom: 1px solid #F0F4F8; /* Light Blue-Gray separator */
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover, .collapsible.active {
+            background-color: #6A2B6B; /* Lighter purple on hover/active */
+        }
+
+        /* Style the +/– indicator */
+        .collapsible:after {
+            content: '\002B'; /* Plus sign */
+            color: #FFFFFF;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .collapsible.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        /* --- Collapsible Content Styles --- */
+        .content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #FFFFFF; /* White background */
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .content-wrapper {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        /* --- Footer Style --- */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* --- Print Button Style --- */
+        #printButton {
+            background-color: #F0F4F8; /* Light Blue-Gray */
+            color: #4A154B; /* Quizizz Purple */
+            border: 2px solid #4A154B;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 25px auto 10px auto;
+            width: 220px;
+            transition: all 0.2s ease;
+        }
+
+        #printButton:hover {
+            background-color: #4A154B;
+            color: #F0F4F8;
+        }
+        
+        /* --- Link Button Style --- */
+        .linkButton {
+            background-color: #F0F4F8; /* Light Blue-Gray */
+            color: #4A154B; /* Quizizz Purple */
+            border: 2px solid #4A154B;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto 25px auto; /* Top, Horizontal, Bottom */
+            width: 220px; /* Same width as printButton */
+            transition: all 0.2s ease;
+            text-decoration: none; /* Remove underline from link */
+            text-align: center; /* Center text */
+        }
+
+        .linkButton:hover {
+            background-color: #4A154B;
+            color: #F0F4F8;
+            text-decoration: none;
+        }
+
+        /* --- Print-Specific Styles --- */
+        @media print {
+            body {
+                background-color: #FFF !important;
+                color: #000 !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0;
+            }
+
+            header {
+                background-color: #FFF !important;
+                color: #000 !important;
+                text-align: left;
+                border-bottom: 2px solid #000;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            /* Hide the print button, link button, collapsible buttons, and footer */
+            #printButton, .linkButton, .collapsible, footer {
+                display: none !important;
+            }
+
+            /* Expand all collapsible content */
+            .content {
+                max-height: none !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .content-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            /* Reset colors for headings and links */
+            h2, h3, strong, a {
+                color: #000 !important;
+            }
+            
+            blockquote {
+                background-color: #F4F4F4 !important;
+                border-left: 4px solid #CCC !important;
+                color: #333 !important;
+            }
+
+            /* Ensure links are printable */
+            a, a:visited {
+                text-decoration: underline;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Comprehensive Guide to Creating a Quizizz</h1>
+        </header>
+
+        <button class="collapsible">What is Quizizz? (And Why Use It?)</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Quizizz (pronounced "quiz-iz") is a <strong>free</strong> online tool that allows teachers to create and share self-paced quizzes. Students can take them on any device (phone, tablet, computer).</p>
+                <p>It's similar to Kahoot!, but with a key difference: Quizizz is <strong>student-paced</strong>. This means each student sees the questions and answers on their *own* screen and can answer at their *own* speed. Kahoot! is teacher-paced, with everyone answering at the same time based on a shared screen.</p>
+                
+                <h3>Key Advantages for EFL</h3>
+                <ul>
+                    <li><strong>Reduces Anxiety:</strong> Slower students aren't rushed by faster ones. This is crucial for language learners who need extra time to read and process.</li>
+                    <li><strong>Great for Review:</strong> Perfect for formative assessment, vocabulary review, or grammar checks.</li>
+                    <li><strong>Gamified & Fun:</strong> It includes leaderboards, funny memes after questions, and power-ups, which greatly increases student engagement.</li>
+                    <li><strong>Excellent Data:</strong> You get an instant, color-coded report showing exactly which questions and which students struggled.</li>
+                    <li><strong>Homework & Asynchronous Learning:</strong> You can assign a quiz as homework with a deadline, and students can do it on their own time.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Accessing & Creating a Quiz (The Free Plan)</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>The free "Basic" plan is very powerful and all most teachers will ever need. The main limitations are on advanced reporting or specific corporate features, not on creating and playing quizzes.</p>
+                <ol>
+                    <li><strong>Get an Account:</strong> Go to <a href="https://quizizz.com" target="_blank">quizizz.com</a> and sign up for a free "Basic" (for School) account. You can use your Google, Microsoft, or any email account.</li>
+                    <li><strong>Create Your Quiz:</strong> Once logged in, click the big purple <strong>"Create"</strong> button (usually at the top left) and select "Quiz".</li>
+                    <li><strong>Name Your Quiz:</strong> Give your quiz a name (e.g., "Unit 5 Vocabulary - Travel") and choose the relevant subject (e.g., "English" or "World Languages").</li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Building Your Quiz: Question Types</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>After clicking "Create," you'll be on the quiz editor screen. You can add many different question types. The most common (and free) ones are:</p>
+                
+                <h3>1. Multiple Choice (The Classic)</h3>
+                <ul>
+                    <li>This is the most common type.</li>
+                    <li>Type your question (e.g., "A place where you sleep in a hotel is a...").</li>
+                    <li>Type the answer options (e.g., "a) bedroom", "b) kitchen", "c) room").</li>
+                    <li>Click the checkmark next to the correct answer ("c) room").</li>
+                    <li>You can <strong>add images</strong> to the question or to the answers, which is fantastic for vocabulary (e.g., show a picture of a "suitcase" and ask "What is this?").</li>
+                </ul>
+                
+                <h3>2. Fill-in-the-Blank</h3>
+                <ul>
+                    <li>Good for grammar or spelling.</li>
+                    <li>Type the question with a blank, e.g., "I ____ to the park yesterday."</li>
+                    <li>In the answer box, type the correct answer: <strong>went</strong>.</li>
+                    <li><strong>Important:</strong> You can add "alternative" answers. For example, if the answer is "big," you might also accept "large." This is very useful.</li>
+                </ul>
+
+                <h3>3. Open-Ended (Short Answer)</h3>
+                <ul>
+                    <li>Students type a short answer.</li>
+                    <li>Example: "What is one thing you should pack for a beach holiday?"</li>
+                    <li>These questions are <strong>not graded automatically</strong>. You will have to review them in the report later, but it's great for production.</li>
+                </ul>
+
+                <h3>Other Great Options</h3>
+                <ul>
+                    <li><strong>Poll:</strong> No correct answer. Great for warm-ups ("Which topic do you want to review?").</li>
+                    <li><strong>Draw:</strong> Students draw the answer (e.g., "Draw a map from your house to the school."). Not auto-graded.</li>
+                    <li><strong>Reorder:</strong> Students drag and drop items into the correct sequence (e.g., for ordering the events in a story).</li>
+                </ul>
+                
+                <blockquote>
+                    <strong>Pro Tip: Use the "Teleport" Feature!</strong><br>
+                    Don't want to make all your own questions? At the top of the editor, click <strong>"Teleport"</strong>. You can search for quizzes made by other teachers (e.g., "present simple"). You can then see all their questions and click "Add" to instantly add any you like to *your* quiz. This saves a huge amount of time!
+                </blockquote>
+            </div>
+        </div>
+
+        <button class="collapsible">Saving & Launching Your Quiz</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <h3>1. Save the Quiz</h3>
+                <ol>
+                    <li>Once you have all your questions, click the <strong>"Save"</strong> or <strong>"Publish"</strong> button (top right).</li>
+                    <li>It may ask you to add a quiz image and set the language. This is optional but helpful.</li>
+                    <li>Set the grade level (e.g., "University" or "Professional Development").</li>
+                    <li>Make sure it's set to <strong>"Public"</strong> so others can see it (or "Private" if you prefer).</li>
+                    <li>Click <strong>"Save."</strong></li>
+                </ol>
+                
+                <h3>2. Launch a Live Quiz (In Class)</h3>
+                <p>This is the most common way to play. You do this in class, and all students play at the same time (but at their own pace).</p>
+                <ol>
+                    <li>After saving, or from your "My Library" page, find the quiz and click <strong>"Start a Live Quiz"</strong>.</li>
+                    <li>Select <strong>"Classic"</strong> mode. (The other modes are for team play, etc.).</li>
+                    <li><strong>Settings:</strong> You will see some game settings. It's a good idea to turn <strong>OFF</strong> the "Redemption Question" (where they re-do wrong answers) for a real test, but leave it <strong>ON</strong> for practice. You can also turn off the timer if you want to reduce pressure.</li>
+                    <li>Click <strong>"Continue" / "Start"</strong>.</li>
+                </ol>
+                
+                <h3>3. The Student Experience (Live Quiz)</h3>
+                <ol>
+                    <li>You (the teacher) will now see a screen with a <strong>Game Code</strong> (e.g., 123 456) and a website: <strong>joinmyquiz.com</strong>.</li>
+                    <li>Tell your students to go to <strong>joinmyquiz.com</strong> on their phones or laptops.</li>
+                    <li>They will be asked for the Game Code. They type it in.</li>
+                    <li>They will be asked for their name. (Tell them to use their real names for your report!)</li>
+                    <li>On your teacher screen, you will see their names appear as they join the "lobby."</li>
+                    <li>Once everyone is in, you click <strong>"Start"</strong>. The quiz begins for everyone.</li>
+                    <li>You see a live leaderboard, and students see questions and memes on their screens.</li>
+                </ol>
+
+                <h3>4. Assign as Homework (Asynchronous)</h3>
+                <p>This is the *other* main way to use Quizizz. It's perfect for distance learning or homework assignments.</p>
+                <ol>
+                    <li>From your quiz page, select <strong>"Assign Homework"</strong> (or "Asynchronous").</li>
+                    <li>Set a <strong>deadline</strong> (e.g., "Due by Friday at 5:00 PM").</li>
+                    <li>Click <strong>"Assign."</strong></li>
+                    <li>Quizizz will now give you a <strong>single link</strong>.</li>
+                    <li>You just share this link with your students (via email, Google Classroom, Teams, etc.). When they click it, they can play the quiz anytime *before* the deadline. You will get the report once they are done.</li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Uses for EFL Teaching</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <h2>1. Formative Assessment / Check for Understanding</h2>
+                <ul>
+                    <li><strong>Topic Introduction:</strong> Start a new unit (e.g., "The Environment") with a quick quiz to see what vocabulary they already know.</li>
+                    <li><strong>Exit Ticket:</strong> A 5-question quiz at the end of class to see if they understood the grammar point you just taught (e.g., "Present Perfect vs. Past Simple").</li>
+                    <li><strong>Pre-Test Review:</strong> Before a major test, use a Quizizz as a fun review session. The report shows you exactly which topics you need to review *one more time*.</li>
+                </ul>
+
+                <h2>2. Vocabulary & Grammar Drills</h2>
+                <ul>
+                    <li><strong>Vocabulary Review:</strong> Use the "Image Question" feature. Show a picture (e.g., of "a passport") and have four multiple-choice options.</li>
+                    <li><strong>Grammar Practice:</strong> Use "Fill-in-the-Blank" for verb tenses, prepositions, or articles. ("He lives ___ London." Answer: "in").</li>
+                    <li><strong>Spelling:</strong> Use "Fill-in-the-Blank" and make sure the "alternatives" are turned off. ("How do you spell the color of the sky?" Answer: "blue").</li>
+                </ul>
+                
+                <h2>3. The "Flipped" Classroom (Homework)</h2>
+                <ul>
+                    <li>Assign a YouTube video or reading passage for homework.</li>
+                    <li>Then, assign a Quizizz (using the "Homework" feature) to check their comprehension of the homework material *before* they even come to class.</li>
+                    <li>This way, you can use class time for speaking and production, not for checking comprehension.</li>
+                </ul>
+
+                <h2>4. Student-Created Quizzes</h2>
+                <ul>
+                    <li>For advanced students, a great project is to have *them* create a quiz.</li>
+                    <li>Put students in groups and assign each group a chapter from the book.</li>
+                    <li>Each group must write 10 high-quality questions (with correct answers and distractors).</li>
+                    <li>You can then "Teleport" their best questions into a single "Class Review" quiz, or have each group "host" their quiz for the others to play.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <button id="printButton">🖨️ Print / Save as PDF</button>
+        
+        <a href="Creating_an_online_test_with_Quizizz.html" class="linkButton">Step by Step presentation</a>
+
+    </div> <script>
+        // --- SCRIPT FOR PRINT BUTTON ---
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        // --- SCRIPT FOR COLLAPSIBLES ---
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        ✨✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️✨
+    </footer>
+
+</body>
+</html>

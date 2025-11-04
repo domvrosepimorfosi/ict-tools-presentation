@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Using Padlet</title>
+    <style>
+        /* --- Basic Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #FFF8E1; /* Light Cream */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #FFF; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #2a2a2a; /* Padlet Dark Gray/Black */
+            color: #FFFFFF; /* White */
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        h2 {
+            color: #2a2a2a; /* Padlet Dark Gray/Black */
+            border-bottom: 2px solid #EEE;
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+
+        h3 {
+            color: #2a2a2a; /* Padlet Dark Gray/Black */
+            margin-top: 1.2em;
+        }
+        
+        p, ol, ul, blockquote {
+            margin-bottom: 1em;
+        }
+        
+        ol, ul {
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: #2a2a2a; /* Padlet Dark Gray/Black */
+        }
+        
+        blockquote {
+            border-left: 4px solid #483D8B; /* Dark Slate Blue (as a contrast) */
+            padding-left: 15px;
+            margin-left: 0;
+            font-style: italic;
+            background-color: #F0F4F8; /* Light Blue-Gray */
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* --- Collapsible Button Styles --- */
+        .collapsible {
+            background-color: #2a2a2a; /* Padlet Dark Gray/Black */
+            color: #FFFFFF; /* White text */
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-bottom: 1px solid #F0F4F8; /* Light separator */
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible:hover, .collapsible.active {
+            background-color: #4a4a4a; /* Lighter gray on hover/active */
+        }
+
+        /* Style the +/– indicator */
+        .collapsible:after {
+            content: '\002B'; /* Plus sign */
+            color: #FFFFFF;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .collapsible.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        /* --- Collapsible Content Styles --- */
+        .content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #FFFFFF; /* White background */
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .content-wrapper {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        /* --- Footer Style --- */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* --- Print Button Style --- */
+        #printButton {
+            background-color: #FFF8E1; /* Light Cream */
+            color: #2a2a2a; /* Padlet Dark Gray/Black */
+            border: 2px solid #2a2a2a;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 25px auto 10px auto;
+            width: 220px;
+            transition: all 0.2s ease;
+        }
+
+        #printButton:hover {
+            background-color: #2a2a2a;
+            color: #FFF8E1;
+        }
+        
+        /* --- Link Button Style --- */
+        .linkButton {
+            background-color: #FFF8E1; /* Light Cream */
+            color: #2a2a2a; /* Padlet Dark Gray/Black */
+            border: 2px solid #2a2a2a;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto 25px auto; /* Top, Horizontal, Bottom */
+            width: 220px; /* Same width as printButton */
+            transition: all 0.2s ease;
+            text-decoration: none; /* Remove underline from link */
+            text-align: center; /* Center text */
+        }
+
+        .linkButton:hover {
+            background-color: #2a2a2a;
+            color: #FFF8E1;
+            text-decoration: none;
+        }
+
+        /* --- Print-Specific Styles --- */
+        @media print {
+            body {
+                background-color: #FFF !important;
+                color: #000 !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0;
+            }
+
+            header {
+                background-color: #FFF !important;
+                color: #000 !important;
+                text-align: left;
+                border-bottom: 2px solid #000;
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            /* Hide the print button, link button, collapsible buttons, and footer */
+            #printButton, .linkButton, .collapsible, footer {
+                display: none !important;
+            }
+
+            /* Expand all collapsible content */
+            .content {
+                max-height: none !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .content-wrapper {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            /* Reset colors for headings and links */
+            h2, h3, strong, a {
+                color: #000 !important;
+            }
+            
+            blockquote {
+                background-color: #F4F4F4 !important;
+                border-left: 4px solid #CCC !important;
+                color: #333 !important;
+            }
+
+            /* Ensure links are printable */
+            a, a:visited {
+                text-decoration: underline;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Comprehensive Guide to Creating a Padlet</h1>
+        </header>
+
+        <button class="collapsible">What is Padlet? (The Free Plan)</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>Padlet is an online <strong>"virtual wall"</strong> or <strong>"digital bulletin board"</strong>. It's an incredibly simple and flexible tool that allows you (and your students) to post "notes" on a shared digital space. These notes aren't just text—they can be <strong>images, videos, links, documents, drawings, and more</strong>.</p>
+                <p>Think of it as a shared webpage that anyone can add a sticky note to, all in real-time.</p>
+                
+                <h3>The Free "Neon" Plan</h3>
+                <p>The free plan is excellent for getting started, but it has one major limitation:</p>
+                <ul>
+                    <li><strong>3 Padlets Limit:</strong> You can only have <strong>3 active Padlets</strong> at one time.</li>
+                    <li>This is NOT a "3 per month" limit. It's 3 total. To make a 4th Padlet, you must delete an old one.</li>
+                    <li><strong>Workaround:</strong> You can "archive" an old Padlet to make a new one, or you can export your old Padlet as a PDF/Image before deleting it.</li>
+                    <li><strong>Storage:</strong> You also get 20MB of storage per upload, which is more than enough for images and documents but not for large video files (though you can link to YouTube videos for free).</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Accessing & Creating Your First Padlet</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <ol>
+                    <li><strong>Sign Up:</strong> Go to <a href="https://padlet.com" target="_blank">padlet.com</a> and sign up for a free "Neon" plan. You can use your Google, Microsoft, or any email account.</li>
+                    <li><strong>Make a Padlet:</strong> From your dashboard, click the <strong>"Make a Padlet"</strong> button.</li>
+                    <li><strong>Choose Your Format (Very Important):</strong> Padlet's main power is its different layouts.
+                        <ul>
+                            <li><strong>Wall:</strong> The classic. Posts appear like bricks in a wall. Good for brainstorming.</li>
+                            <li><strong>Shelf (Highly Recommended):</strong> This is the most organized format. You create columns with titles (e.g., "Grammar," "Vocabulary," "Questions"). Students then post their notes *under* the correct column.</li>
+                            <li><strong>Timeline:</strong> Posts are organized along a horizontal line. Perfect for historical events or story sequencing.</li>
+                            <li><strong>Canvas:</strong> A free-form canvas where you can drag posts around and connect them with arrows. Great for mind maps.</li>
+                            <li><strong>Map:</strong> Students drop pins on a real-world map. (e.g., "Where I went on holiday" or "Where this food comes from").</li>
+                            <li><strong>Stream:</strong> A simple, top-to-bottom blog-style feed.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <button class="collapsible">Customizing Your Padlet</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <p>After you choose a format, a "Modify" panel will open. This is where you set up your wall.</p>
+                
+                <h3>Key Settings to Change</h3>
+                <ul>
+                    <li><strong>Title:</strong> Give your Padlet a clear title (e.g., "B1 Class Brainstorm - The Environment").</li>
+                    <li><strong>Description:</strong> Add clear instructions (e.g., "Post one idea for how we can reduce waste.").</li>
+                    <li><strong>Icon:</strong> Add an emoji to your title to make it visual and fun.</li>
+                    <li><strong>Wallpaper:</strong> Change the background to a color, gradient, or image to match your topic.</li>
+                </ul>
+
+                <h3>Posting Settings (Important for Class Management)</h3>
+                <ul>
+                    <li><strong>Attribution:</strong> If you turn this <strong>ON</strong>, it will show the name of the student (if they are logged in) above their post. If it's <strong>OFF</strong>, all posts are anonymous. <em>(Anonymous is great for shy students, while attribution is better for assessment).</em></li>
+                    <li><strong>Comments:</strong> Turn <strong>ON</strong> to allow students to write comments underneath each other's posts. (Great for peer feedback).</li>
+                    <li><strong>Reactions:</strong> You can allow students to "Like," "Vote," or "Grade" (give stars) to posts. "Like" is a simple and effective engagement tool.</li>
+                    <li><strong>Require Approval (Moderation):</strong> If you turn this <strong>ON</strong>, no post will appear on the wall until you (the teacher) click "Approve." This is <strong>essential</strong> if you are worried about inappropriate content.</li>
+                    <li><strong>Filter Profanity:</strong> Automatically replaces bad words with emojis. It's a good idea to turn this <strong>ON</strong>.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <button class="collapsible">Sharing & Posting</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <h3>1. Sharing with Students</h3>
+                <p>Once your Padlet is set up, you need to invite students to it.</p>
+                <ol>
+                    <li>Click the <strong>"Share"</strong> button (top right).</li>
+                    <li>A panel opens. Click <strong>"Change privacy"</strong>.
+                        <ul>
+                            <li><strong>Secret (Default & Recommended):</strong> Anyone who has the link can access the Padlet. It's not searchable on Google. This is the easiest option.</li>
+                            <li><strong>Password:</strong> Same as "Secret," but they also need a password you set.</li>
+                            <li><strong>Private:</strong> Only you and people you *specifically* add by email can access it.</li>
+                        </ul>
+                    </li>
+                    <li>Next, set "Visitor permissions" to <strong>"Can write"</strong>. This allows students to add posts. (If you only want them to read, set it to "Can read").</li>
+                    <li><strong>Get the Link:</strong> Go back to the main Share panel and click <strong>"Copy link to clipboard"</strong>.</li>
+                    <li>Paste this link into your Google Classroom, email, or chat.</li>
+                </ol>
+                
+                <h3>2. How Students Post</h3>
+                <p>When students open the link, they don't need to sign in. They simply double-click anywhere on the wall (or click the <strong>(+)</strong> icon). A new post (a "sticky note") will appear, and they can:</p>
+                <ul>
+                    <li>Write a title and text.</li>
+                    <li><strong>Upload</strong> a file (like a PDF or Word doc).</li>
+                    <li><strong>Take a photo</strong> with their device's camera (selfie, picture of their notebook).</li>
+                    <li><strong>Link</strong> to a website.</li>
+                    <li><strong>Search for an image</strong> or GIF directly from Padlet.</li>
+                    <li>...and much more, like add a drawing, record their voice, or add a map.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="collapsible">Top 10 Uses for EFL Teaching</button>
+        <div class="content">
+            <div class="content-wrapper">
+                <ol>
+                    <li><strong>Brainstorming (Wall Format):</strong>
+                        <p><strong>Warm-up:</strong> "What words do you know related to 'food'?" Students add all their ideas to the wall. You can then drag similar words together (verbs, fruit, etc.).</p>
+                    </li>
+                    <li><strong>KWL Chart (Shelf Format):</strong>
+                        <p>Create three columns: "What we <strong>K</strong>now," "What we <strong>W</strong>ant to know," "What we <strong>L</strong>earned." Students post notes in the first two columns before a lesson, and the last one after.</p>
+                    </li>
+                    <li><strong>Exit Ticket (Stream Format):</strong>
+                        <p>At the end of class, have students anonymously post "One thing you learned" and "One question you still have."</p>
+                    </li>
+                    <li><strong>Show and Tell (Wall or Shelf Format):</strong>
+                        <p>For homework, students find a picture of an object that is important to them, upload it to the Padlet, and write two sentences about it. In class, you use the Padlet to lead a speaking activity.</p>
+                    </li>
+                    <li><strong>Jigsaw Reading (Shelf Format):</strong>
+                        <p>Create columns for "Group 1," "Group 2," etc. Each group reads a different text and posts a summary of their text in their column for the other groups to read.</p>
+                    </li>
+                    <li><strong>Digital Portfolio (Shelf Format):</strong>
+                        <p>Create a private Padlet for a single student. Create columns for "Writing," "Videos," "Audio." The student uploads their work throughout the semester. Use the "Comment" feature to give feedback.</p>
+                    </li>
+                    <li><strong>Collaborative Story (Timeline Format):</strong>
+                        <p>Write the first sentence of a story. The next student adds a post with the next sentence, and so on, building a story along the timeline.</p>
+                    </li>
+                    <li><strong>Class Q&A Board (Wall Format):</strong>
+                        <p>Keep a Padlet running for the whole semester where students can post anonymous questions about homework, grammar, or exams.</p>
+                    </li>
+                    <li><strong>Listening/Video Task (Shelf Format):</strong>
+                        <p>In Column 1, post a YouTube video. In Column 2 ("Pre-Listening"), ask students to predict the content. In Column 3 ("Post-Listening"), add comprehension or discussion questions for them to answer.</p>
+                    </li>
+                    <li><strong>Travel Guide (Map Format):</strong>
+                        <p>For a unit on travel, have each student choose a city. They must add a pin to the map and, in their post, write a short recommendation (what to see, what to eat) for that city.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <button id="printButton">🖨️ Print / Save as PDF</button>
+        
+        <a href="Creating_a_Padlet.html" class="linkButton">Step by Step presentation</a>
+
+    </div> <script>
+        // --- SCRIPT FOR PRINT BUTTON ---
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        // --- SCRIPT FOR COLLAPSIBLES ---
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        ✨✍️ Created by Panagiotis Domvros, English and Drama Teacher, All Rights Reserved ✍️✨
+    </footer>
+
+</body>
+</html>
