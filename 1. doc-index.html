@@ -28,12 +28,27 @@
             background-color: #800020; /* Burgundy */
             color: #F5F5DC; /* Beige */
             padding: 20px 30px;
-            text-align: center;
+            /* text-align: center; -- Replaced by flex */
         }
 
         h1 {
             margin: 0;
             font-size: 2em;
+            /* --- Added for logo --- */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+        
+        /* --- Added for logo --- */
+        .header-logo {
+            height: 120px;
+            width: 120px;
+            margin-right: 20px;
+            border-radius: 50%;
+            border: none;
+            flex-shrink: 0;
         }
         
         h2 {
@@ -206,10 +221,11 @@
             
             h1 {
                 font-size: 1.8em;
+                justify-content: flex-start; /* Align left on print */
             }
             
-            /* Hide the print button, link button, collapsible buttons, and footer */
-            #printButton, .linkButton, .collapsible, footer {
+            /* Hide the print button, link button, collapsible buttons, footer, and logo */
+            #printButton, .linkButton, .collapsible, footer, .header-logo {
                 display: none !important;
             }
 
@@ -248,7 +264,10 @@
 
     <div class="container">
         <header>
-            <h1>Comprehensive Guide to Using Google Docs</h1>
+            <h1>
+                <img src="pdhub-logo.png" alt="PD Hub Logo" class="header-logo">
+                Comprehensive Guide to Using Google Docs
+            </h1>
         </header>
 
         <button class="collapsible">Accessing Google Docs (The Free Plan)</button>
